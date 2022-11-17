@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTips.NetCore6Ver", "AspNetCoreTips.NetCore6Ver\AspNetCoreTips.NetCore6Ver.csproj", "{F72A2C21-6543-47E6-9409-177AE3A1210E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTips.NetCore6Ver", "AspNetCoreTips.NetCore6Ver\AspNetCoreTips.NetCore6Ver.csproj", "{F72A2C21-6543-47E6-9409-177AE3A1210E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTips.NetCore7Ver", "AspNetCoreTips.NetCore7Ver\AspNetCoreTips.NetCore7Ver.csproj", "{A8960D42-4210-487A-8E0E-FB4269449545}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F72A2C21-6543-47E6-9409-177AE3A1210E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F72A2C21-6543-47E6-9409-177AE3A1210E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F72A2C21-6543-47E6-9409-177AE3A1210E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8960D42-4210-487A-8E0E-FB4269449545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8960D42-4210-487A-8E0E-FB4269449545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8960D42-4210-487A-8E0E-FB4269449545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8960D42-4210-487A-8E0E-FB4269449545}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
