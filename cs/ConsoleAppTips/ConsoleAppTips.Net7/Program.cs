@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using ConsoleAppTips.Net7.GenericMath;
+
 Console.WriteLine("Hello, World!");
+
+
+GenericMathSample.Execute();
