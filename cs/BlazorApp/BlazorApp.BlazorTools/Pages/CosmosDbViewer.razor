@@ -1,0 +1,53 @@
+﻿@page "/cosmosdb"
+@using BlazorApp.BlazorTools.Models;
+@inject CosmosDbService _cosmosDbService
+
+<h3>Azure CosmosDB Viewer</h3>
+
+
+@if (!dbContainers.Any())
+{
+    <p><em>No Database found in ComsosDB Account</em></p>
+}
+else
+{
+    @foreach (var dbContainer in dbContainers)
+    {
+        <p>Database: <em>@dbContainer.Key</em></p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ContainerName</th>
+                    <th>Id</th>
+                    <th>PartitionKey</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@dbContainer.Value.Name</td>
+                    <td>@dbContainer.Value.IdName</td>
+                    <td>@dbContainer.Value.PartitionKeyName</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+}
+@code {
+    private Dictionary<string, CosmosDbContainer> dbContainers = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await foreach (var response in _cosmosDbService.GetContainersAsync())
+        {
+            dbContainers.Add(response.DatabaseName, new ()
+                {
+                    Name = response.ContainerName,
+                    IdName = response.ContainerName,
+                    PartitionKeyName = response.ContainerPartitionKey
+                });
+        }
+
+        await base.OnInitializedAsync();
+    }
+}
