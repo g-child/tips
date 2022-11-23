@@ -24,6 +24,9 @@
 @code {
     List<PizzaSpecial> specials = new();
 
+    Pizza configuratingPizza;
+    bool showingConfigureDialog;
+
     protected override void OnInitialized()
     {
         specials.AddRange(new List<PizzaSpecial>
