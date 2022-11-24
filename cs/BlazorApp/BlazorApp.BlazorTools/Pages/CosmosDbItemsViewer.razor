@@ -1,0 +1,33 @@
+﻿@inject CosmosDbService _cosmosDbService;
+
+@if (!cosmosDbItems.Any())
+{
+    <p><em>Now Loading...</em></p>
+}
+else
+{
+    @foreach (var item in cosmosDbItems)
+    {
+        <div>
+            <code>@item</code>
+        </div>
+    }
+}
+
+@code {
+    private List<string> cosmosDbItems = new();
+
+    [Parameter]
+    public required string DatabaseId { get; set; }
+
+    [Parameter]
+    public required string ContainerId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await foreach (var response in _cosmosDbService.GetItemsAsync(DatabaseId, ContainerId, 0, 10))
+        {
+            cosmosDbItems.Add(response);
+        }
+    }
+}

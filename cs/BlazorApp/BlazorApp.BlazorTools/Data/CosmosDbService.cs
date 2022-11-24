@@ -1,4 +1,6 @@
 using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.Cosmos.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace BlazorApp.BlazorTools.Data;
 
@@ -51,17 +53,29 @@ public class CosmosDbService
             }
         }
     }
-}
 
-public class GetContainersResponse
-{
-    public required string DatabaseName { get; set; }
-    public required string ContainerName { get; set; }
-    public required string ContainerId { get; set; }
-    public required string ContainerPartitionKey { get; set; }
-}
+    public async IAsyncEnumerable<string> GetItemsAsync(string databaseId, string containerId, int skip, int take)
+    {
+        var iterator = _cosmosClient.GetContainer(databaseId, containerId).GetItemLinqQueryable<JObject>().Skip(skip).Take(take).ToFeedIterator();
+        while (iterator.HasMoreResults)
+        {
+            foreach (var jobject in await iterator.ReadNextAsync())
+            {
+                yield return jobject.ToString();
+            }
+        }
+    }
 
-public class GetDatabasesResponse
-{
-    public required string DatabaseName { get; set; }
+    public class GetContainersResponse
+    {
+        public required string DatabaseName { get; set; }
+        public required string ContainerName { get; set; }
+        public required string ContainerId { get; set; }
+        public required string ContainerPartitionKey { get; set; }
+    }
+
+    public class GetDatabasesResponse
+    {
+        public required string DatabaseName { get; set; }
+    }
 }

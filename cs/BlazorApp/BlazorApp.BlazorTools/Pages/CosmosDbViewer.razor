@@ -5,49 +5,98 @@
 <h3>Azure CosmosDB Viewer</h3>
 
 
-@if (!dbContainers.Any())
+@if (!databases.Any())
 {
-    <p><em>No Database found in ComsosDB Account</em></p>
+    <p><em>Loading CosmosDB...</em></p>
 }
 else
 {
-    @foreach (var dbContainer in dbContainers)
+    @foreach (var database in databases)
     {
-        <p>Database: <em>@dbContainer.Key</em></p>
+        <p>Database: <em>@database.Key</em></p>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ContainerName</th>
-                    <th>Id</th>
-                    <th>PartitionKey</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>@dbContainer.Value.Name</td>
-                    <td>@dbContainer.Value.IdName</td>
-                    <td>@dbContainer.Value.PartitionKeyName</td>
-                </tr>
-            </tbody>
-        </table>
+        @foreach (var container in database.Value)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>ContainerName</th>
+                        <th>Id</th>
+                        <th>PartitionKey</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <button @onclick="@(e => UpdateContainerIdentifier(database.Key, container.Name))">
+                                Show
+                            </button>
+                        </td>
+                        <td>@container.Name</td>
+                        <td>@container.IdName</td>
+                        <td>@container.PartitionKeyName</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
     }
 }
+
+
+@if (selectedContainer is null)
+{
+    <p><em>Select Container...</em></p>
+}
+else
+{
+    <div>
+        <DynamicComponent Type="@typeof(CosmosDbItemsViewer)" Parameters="selectedContainer.Parameters" />
+    </div>
+}
+
+
 @code {
-    private Dictionary<string, CosmosDbContainer> dbContainers = new();
+    private Dictionary<string, List<CosmosDbContainer>> databases = new();
+    private CosmosDbItemsViewerMetadata? selectedContainer = null;
 
     protected override async Task OnInitializedAsync()
     {
         await foreach (var response in _cosmosDbService.GetContainersAsync())
         {
-            dbContainers.Add(response.DatabaseName, new ()
+            if (databases.ContainsKey(response.DatabaseName))
+            {
+                databases[response.DatabaseName].Add(new()
+                    {
+                        Name = response.ContainerName,
+                        IdName = response.ContainerName,
+                        PartitionKeyName = response.ContainerPartitionKey
+                    });
+            }
+            else
+            {
+                databases.Add($"{response.DatabaseName}", new()
                 {
-                    Name = response.ContainerName,
-                    IdName = response.ContainerName,
-                    PartitionKeyName = response.ContainerPartitionKey
+                    new()
+                    {
+                        Name = response.ContainerName,
+                        IdName = response.ContainerName,
+                        PartitionKeyName = response.ContainerPartitionKey
+
+                    }
                 });
+            }
         }
 
         await base.OnInitializedAsync();
+    }
+
+    private void UpdateContainerIdentifier(string databaseId, string containerId)
+    {
+        selectedContainer = new()
+            {
+                DatabaseId = databaseId,
+                ContainerId = containerId
+            };
     }
 }
