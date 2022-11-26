@@ -1,24 +1,26 @@
-﻿namespace MauiAppSample.AuthSample;
+﻿using Microsoft.Identity.Client;
+
+namespace MauiAppSample.AuthSample;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public MainPage()
+    {
+        InitializeComponent();
+    }
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
+    private async void LoginBtn_Clicked(object sender, EventArgs e)
+    {
+        LoginBtn.Text = "Log In Clicked !";
+        SemanticScreenReader.Announce(LoginBtn.Text);
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+        var app = PublicClientApplicationBuilder.Create("<REPLACE>")
+            .WithRedirectUri("<REPLACE>")
+            .WithB2CAuthority("<REPLACE>")
+            .Build();
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+        var result = await app.AcquireTokenInteractive(new string[] { "openid", "offline_access" }).ExecuteAsync();
+    }
 }
 

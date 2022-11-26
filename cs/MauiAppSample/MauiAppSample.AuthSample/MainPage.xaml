@@ -29,17 +29,10 @@
                 HorizontalOptions="Center" />
 
             <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-            <Button
                 x:Name="LoginBtn"
                 Text="Log in"
                 SemanticProperties.Hint="Login to AAD B2C"
-                Clicked="OnCounterClicked"
+                Clicked="LoginBtn_Clicked"
                 HorizontalOptions="Center" />
 
 
