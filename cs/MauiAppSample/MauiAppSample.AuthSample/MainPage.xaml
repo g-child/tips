@@ -35,6 +35,12 @@
                 Clicked="LoginBtn_Clicked"
                 HorizontalOptions="Center" />
 
+            <Label
+                x:Name="AccessTokenTextArea"
+                Text=""
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
 
         </VerticalStackLayout>
     </ScrollView>

@@ -1,6 +1,4 @@
-﻿using Microsoft.Identity.Client;
-
-namespace MauiAppSample.AuthSample;
+﻿namespace MauiAppSample.AuthSample;
 
 public partial class MainPage : ContentPage
 {
@@ -15,12 +13,14 @@ public partial class MainPage : ContentPage
         LoginBtn.Text = "Log In Clicked !";
         SemanticScreenReader.Announce(LoginBtn.Text);
 
-        var app = PublicClientApplicationBuilder.Create("<REPLACE>")
-            .WithRedirectUri("<REPLACE>")
-            .WithB2CAuthority("<REPLACE>")
-            .Build();
+        //var app = PublicClientApplicationBuilder.Create("<REPLACE>")
+        //    .WithRedirectUri("<REPLACE>")
+        //    .WithB2CAuthority("<REPLACE>")
+        //    .Build();
 
-        var result = await app.AcquireTokenInteractive(new string[] { "openid", "offline_access" }).ExecuteAsync();
+        //var result = await app.AcquireTokenInteractive(new string[] { "openid", "offline_access" }).ExecuteAsync();
+
+        AccessTokenTextArea.Text = "!! ACCESS TOKEN !!";
     }
 }
 
