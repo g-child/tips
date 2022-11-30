@@ -3,11 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppSample.SandBoxApp.MainPage"
              Title="Hello XAML Page">
-    <Label Text="Hello, XAML!"
-           VerticalOptions="Center"
-           HorizontalTextAlignment="Center"
-           Rotation="-15"
-           FontSize="18"
-           FontAttributes="Bold"
-           TextColor="Blue" />
+
+    <StackLayout>
+        <Button Text="Do this!"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BorderWidth="3"
+                Rotation="-15"
+                TextColor="Red"
+                FontSize="24" />
+        <Button Text="Do that!"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BorderWidth="3"
+                Rotation="-15"
+                TextColor="Red"
+                FontSize="24" />
+        <Button Text="Do the other thing!"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BorderWidth="3"
+                Rotation="-15"
+                TextColor="Red"
+                FontSize="24" />
+
+    </StackLayout>
 </ContentPage>
