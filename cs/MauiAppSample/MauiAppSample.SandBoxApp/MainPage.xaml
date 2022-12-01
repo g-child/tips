@@ -4,13 +4,15 @@
              x:Class="MauiAppSample.SandBoxApp.MainPage"
              Title="Hello XAML Page">
 
+    
+    
     <StackLayout>
         <Button Text="Do this!"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 BorderWidth="3"
                 Rotation="-15"
-                TextColor="Red"
+                TextColor="{x:StaticResource Yellow100Accent}"
                 FontSize="24" />
         <Button Text="Do that!"
                 HorizontalOptions="Center"
