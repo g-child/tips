@@ -27,7 +27,9 @@
                 BorderWidth="3"
                 Rotation="-15"
                 TextColor="Red"
-                FontSize="24" />
+                FontSize="24"
+                Clicked="Button_Clicked"
+                />
 
     </StackLayout>
 </ContentPage>
