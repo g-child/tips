@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:MauiAppSample.SandBoxApp"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
+    <!--<ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
@@ -14,6 +14,11 @@
     <ShellContent
         Title="Sub"
         ContentTemplate="{DataTemplate local:SubPage}"
-        Route="SubPage" />
+        Route="SubPage" />-->
+
+    <ShellContent
+        Title="BasicCodeBindingPage"
+        ContentTemplate="{DataTemplate local:BasicCodeBindingPage}"
+        Route="BasicCodeBindingPage" />
 
 </Shell>

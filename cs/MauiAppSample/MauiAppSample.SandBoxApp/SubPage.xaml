@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppSample.SandBoxApp.SubPage">
     <ScrollView>
-        <VerticalStackLayout 
-            VerticalOptions="Center">
-
-        </VerticalStackLayout>
+            <Button Text="Goto Main!"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BorderWidth="3"
+                Rotation="-15"
+                TextColor="{x:StaticResource Yellow100Accent}"
+                FontSize="24"
+                Clicked="OnClicked"/>
     </ScrollView>
 </ContentPage>
