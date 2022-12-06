@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\_repos\me\cs\tips\cs\ConsoleAppTips\ConsoleAppTips.Net7\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\_repos\me\cs\tips\cs\ConsoleAppTips\ConsoleAppTips.Net7\.editorconfig" />
+  </ItemGroup>
+
 </Project>
